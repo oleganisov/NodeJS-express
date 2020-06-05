@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon --ignore db.json app.js"
+    "nodemon": "nodemon --ignore db.json app.js",
+    "server": "node app.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.1.1",
