@@ -8,6 +8,7 @@ const get = (req, res) => {
     title: 'Домашняя страница',
     skills: db.getSkills() || [],
     products: db.getProducts() || [],
+    msgemail: req.flash('msgemail')[0],
   });
 };
 
@@ -19,12 +20,12 @@ const post = (req, res) => {
     subject: `Sending email from ${name} ${email}`,
     text: message,
   };
-  // console.log(mailTo, email);
 
   sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
   sgMail
     .send(msg)
     .then(() => {
+      req.flash('msgemail', 'Сообщение отправлено!');
       res.redirect('/#feedback');
     })
     .catch((error) => {
