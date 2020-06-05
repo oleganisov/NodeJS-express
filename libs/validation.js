@@ -1,9 +1,9 @@
 const isAuth = (req, res, next) => {
-  if (req.session.isAdmin) {
+  if (req.session.isAuth) {
     next();
   } else {
     res.redirect('/login');
   }
 };
 
-exports.module = { isAuth };
+module.exports = { isAuth };
