@@ -96,4 +96,16 @@ const addProduct = (name, price, photo) => {
   db.get('products').push(product).write;
 };
 
-module.exports = { init, getSkills, updateSkills, getProducts, addProduct };
+const getUser = () => db.getState().user;
+const saveUser = ({ login, hash, salt }) =>
+  db.set('user', { login, hash, salt }).write();
+
+module.exports = {
+  init,
+  getSkills,
+  updateSkills,
+  getProducts,
+  addProduct,
+  getUser,
+  saveUser,
+};
