@@ -93,7 +93,7 @@ const updateSkills = (age, concerts, cities, years) => {
 
 const addProduct = (name, price, photo) => {
   const product = { src: photo, name, price };
-  db.get('products').push(product).write;
+  db.get('products').push(product).write();
 };
 
 const getUser = () => db.getState().user;

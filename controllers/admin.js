@@ -24,18 +24,19 @@ const upload = (req, res, next) => {
   const upload = path.join('./public', 'upload');
   const form = formidable({ uploadDir: upload });
 
-  form.parse(req, (err, fields, file) => {
+  form.parse(req, async (err, fields, file) => {
     if (err) return next(err);
 
     const { name, price } = fields;
-    const filePath = path.join(upload, file.photo.name);
+    const destPath = path.join(upload, file.photo.name);
 
-    console.log('fields:', name, price);
-    console.log('file:', filePath);
+    fs.rename(file.photo.path, destPath, (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
 
-    fs.rename();
-
-    db.addProduct(name, price, filePath);
+    db.addProduct(name, price, path.join('upload', file.photo.name));
     req.flash('msgfile', 'Товар добавлен!');
     res.redirect('/admin');
   });

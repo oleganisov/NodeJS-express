@@ -32,7 +32,7 @@ app.use(
 app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -49,7 +49,7 @@ app.use((err, req, res) => {
 });
 
 app.listen(port, () => {
-  const upload = path.join('./public', 'upload');
+  const upload = path.join(__dirname, 'public', 'upload');
   fs.mkdirSync(upload, { recursive: true });
 
   console.log(`Server listen on port ${port}`);
