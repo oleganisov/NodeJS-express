@@ -24,7 +24,7 @@ const upload = (req, res, next) => {
   const upload = path.join('./public', 'upload');
   const form = formidable({ uploadDir: upload });
 
-  form.parse(req, async (err, fields, file) => {
+  form.parse(req, (err, fields, file) => {
     if (err) return next(err);
 
     const { name, price } = fields;
